@@ -1,0 +1,42 @@
+{
+  "title": "Title",
+  "sub": "Subtitle (if need)",
+  "offer": "Offer (if need)",
+  "description": "Description",
+  "calltoaction": "Call to action (if need)",
+
+  "icon": "",
+  "image": "",
+  "logo": ["/logo.png", "/logo-variant.png"],
+
+  "company": "&laquo;Company&raquo;",
+  "formname": ["LLC", "Limited liability company"],
+  "inn": "",
+  "kpp": "",
+  "ogrn": "",
+  "rs": "",
+  "bank": "bank &laquo;Bank&raquo;",
+  "bik": "",
+  "ks": "",
+  "director": ["director", "Surname N."],
+  "license": "License MIT",
+  "year": "2000",
+
+  "phone": ["8 800 000-00-00"],
+  "email": ["mail@company.com"],
+  "work": [
+    "Mon-Fri from 09:00 to 17:00",
+    "Sat from 09:00 to 15:00",
+    "Sun is day off",
+    "Break from 12:00 to 13:00"
+  ],
+
+  "postcode": "101000",
+  "country": "USA",
+  "state": "State",
+  "city": "City",
+  "street": "1 st. Street",
+  "address": "1 st. Street, City",
+
+  "coords": ["55.755819", "36.617644"]
+}

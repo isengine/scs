@@ -1,0 +1,36 @@
+{
+  "index": "Home",
+
+  "catalog": "Catalog",
+  "docs": "Documents",
+  "download": "Download",
+  "gallery": "Media gallery",
+  "service": "Service",
+
+  "blog": "Blog",
+  "faq": "FAQ",
+  "feedback": "Feedback",
+  "help": "Help",
+  "news": "News",
+  "warranty": "Warranty",
+
+  "about": "About us",
+  "contacts": "Contacts",
+  "search": "Search",
+
+  "agreement": "User agreements",
+  "covid": "Prevention of COVID-19",
+  "privacy": "Privacy policy",
+  "terms": "Terms & conditions",
+  "delivery": "Delivery",
+  "payment": "Payment",
+
+  "cart": "Cart",
+  "profile": "Profile",
+  "login": "Sign in",
+  "register": "Sign up",
+  "reset": "Reset",
+  "search": "Search",
+
+  "error": "Error page"
+}
