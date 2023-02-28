@@ -7,9 +7,9 @@ router.route('/').get((req, res) => {
 })
 
 router.route('/test').get((req, res) => {
-  const response = req.t('title');
-  res.status(200);
-  res.send(response);
+  const response = req.t('title')
+  res.status(200)
+  res.send(response)
 })
 
 export default router
