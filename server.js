@@ -5,9 +5,9 @@ import cors from 'cors'
 import createError from 'http-errors'
 import express from 'express'
 import i18nextMiddleware from 'i18next-http-middleware'
-import hbs from './hbs.js'
-import i18next from './i18next.js'
-import routes from './routes.js'
+import hbs from '#server/hbs.js'
+import i18next from '#server/i18next.js'
+import routes from '#server/routes'
 
 dotenv.config()
 
