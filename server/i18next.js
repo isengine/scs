@@ -2,26 +2,14 @@ import dotenv from 'dotenv'
 import i18next from 'i18next'
 import Backend from 'i18next-fs-backend'
 import i18nextMiddleware from 'i18next-http-middleware'
-import registerI18nHelper from 'handlebars-i18next'
-import hbs from 'hbs'
 
 dotenv.config()
 
-const lang = process.env.LANG
-let langs
-try {
-  langs = JSON.parse(process.env.LANGS) ?? [lang]
-} catch (e) {
-  langs = [lang]
-}
+const lang = process.env.LANG || 'en'
+const langs = JSON.parse(process.env.LANGS || `["${lang}"]`)
 
-const langFile = process.env.LANG_FILE
-let langFiles
-try {
-  langFiles = JSON.parse(process.env.LANG_FILES) ?? [langFile]
-} catch (e) {
-  langFiles = [langFile]
-}
+const langFile = process.env.LANG_FILE || 'default'
+const langFiles = JSON.parse(process.env.LANG_FILES || `["${langFile}"]`)
 
 i18next
   .use(Backend)
@@ -49,8 +37,9 @@ i18next
       if (err) return console.error(err)
       console.log('i18next is ready')
     }
-  );
+  )
 
-registerI18nHelper.default(hbs, i18next, 'lang')
+const i18nextHandle = i18nextMiddleware.handle(i18next)
+const i18nextLang = (key) => i18next.t(key)
 
-export default i18next
+export { i18next, i18nextHandle, i18nextLang }

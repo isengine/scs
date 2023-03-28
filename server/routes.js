@@ -1,9 +1,12 @@
 import express from 'express'
+import render from '#server/ejs'
 
 const router = express.Router()
 
-router.route('/').get((req, res) => {
-  res.render('index')
+router.route('/').get(render)
+router.route('/page').get(render)
+router.route('/folder/inner_page').get((req, res, next) => {
+  render(req, res, next, 'default')
 })
 
 router.route('/test').get((req, res) => {

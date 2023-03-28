@@ -1,0 +1,16 @@
+<body>
+  <%- include(block('nav')) %>
+  <div class="row">
+    <div class="col-md-2">
+      <%- include(block('leftbar')) %>
+    </div>
+    <div class="col-md-8">
+      <%= page %>
+      <%- include(page) %>
+    </div>
+    <div class="col-md-2">
+      <%- include(block('rightbar')) %>
+    </div>
+  </div>
+  <%- include(block('footer')) %>
+</body>

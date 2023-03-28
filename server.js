@@ -4,56 +4,47 @@ import morgan from 'morgan'
 import cors from 'cors'
 import createError from 'http-errors'
 import express from 'express'
-import i18nextMiddleware from 'i18next-http-middleware'
-import hbs from '#server/hbs.js'
-import i18next from '#server/i18next.js'
+import { compression, shouldCompression } from '#server/compression'
+import { i18nextHandle, i18nextLang } from '#server/i18next'
+import ejs from 'ejs'
 import routes from '#server/routes'
+import errorHandler from '#server/error'
 
 dotenv.config()
 
 const server = express()
 
 const isDev = process.env.NODE_ENV === 'dev'
+const template = process.env.TEMPLATE || 'view/default'
 const port = process.env.PORT || 8080
+const message = `${'Server running \n'.bold} in ${
+  (isDev ? 'development' : 'production').yellow
+} mode on ${port.yellow} port\n at ${`http://localhost:${port}`.bold}`
 
 if (isDev) server.use(morgan('dev'))
 
 server
+  .use(compression({ filter: shouldCompression }))
   .use(cors())
   .use(express.json())
-  .use(i18nextMiddleware.handle(i18next))
+  .use(i18nextHandle)
   .use('', routes)
   .use(express.static('./static'))
-  .set('views', `./view${process.env.TEMPLATE}/`)
 
-  // set handlebars
+  // set template engine
+  .set('views', `./${template}/`)
   .set('view engine', 'html')
-  .engine('html', hbs.__express)
+  .engine('html', ejs.__express)
 
   // catch 404 and forward to error handler
   .use((req, res, next) => {
     next(createError(404))
   })
 
-  // error handler
-  .use((err, req, res, next) => {
-    // set locals, only providing error in development
-    res.locals.message = err.message
-    res.locals.error = isDev ? err : {}
-    // render the error page
-    res.status(err.status || 500)
-    res.render('error')
-  })
+  // error handler is last middleware
+  .use(errorHandler)
 
-server.listen(
-  port,
-  console.log(
-    'Server running \n'.bold,
-    'in ' +
-      (isDev ? 'development' : 'production').yellow +
-      ' mode on ' +
-      port.yellow +
-      ' port\n',
-    'at ' + `http://localhost:${port}`.bold
-  )
-)
+// lang as local server function
+server.locals.lang = i18nextLang
+
+server.listen(port, console.log(message))
